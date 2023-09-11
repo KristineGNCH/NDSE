@@ -2,7 +2,7 @@
 
 ## Блок 1: Настройка окружения
 
-:hourglass_flowing_sand: 1.2 Аргументы командной строки и console
+:hourglass_flowing_sand: [1.2 Аргументы командной строки и console](https://github.com/KristineGNCH/NDSE/tree/main/HM-1.2)
 
 :x: 1.3 Пакеты и модули Node.js
 
