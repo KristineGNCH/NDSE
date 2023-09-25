@@ -1,14 +1,19 @@
 {
   "name": "hm-1.2",
   "version": "1.0.0",
-  "description": "",
+  "description": "completed homeworks",
   "main": "date.js",
   "bin": {
-    "current": "./date.js"
+    "current": "date.js",
+    "play": "number.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "private": "true",
+  "license": "ISC",
+  "dependencies": {
+    "yargs": "^17.7.2"
+  }
 }
