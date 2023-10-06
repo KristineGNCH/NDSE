@@ -4,7 +4,7 @@
 
 :hourglass_flowing_sand: [1.2 Аргументы командной строки и console](https://github.com/KristineGNCH/NDSE/tree/main/HM-1.2)
 
-:hourglass_flowing_sand: 1.4 Потоки. Модули: path, fs
+:hourglass_flowing_sand: [1.4 Потоки. Модули: path, fs](https://github.com/KristineGNCH/NDSE/tree/main/HM-1.4)
 
 :x: 1.5 Http-module. Переменные окружениянты командной строки и console 
 
