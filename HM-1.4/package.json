@@ -1,0 +1,15 @@
+{
+  "name": "hm-1.4",
+  "version": "1.0.0",
+  "description": "heads and tails game",
+  "main": "game.js",
+  "bin": "./game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "yargs": "^17.7.2"
+  }
+}
