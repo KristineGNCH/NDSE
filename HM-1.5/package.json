@@ -1,0 +1,20 @@
+{
+  "name": "hm-1.5",
+  "version": "1.0.0",
+  "description": "weather data",
+  "main": "weather.js",
+  "bin": {
+    "weather": "./weather.js"
+  },
+  "scripts": {
+    "dev": "node -r dotenv/config weather.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^16.3.1"
+  },
+  "dependencies": {
+    "yargs": "^17.7.2"
+  }
+}
