@@ -6,7 +6,7 @@
 
 :white_check_mark: [1.4 Потоки. Модули: path, fs](https://github.com/KristineGNCH/NDSE/tree/main/HM-1.4)
 
-:hourglass_flowing_sand: 1.5 Http-module. Переменные окружениянты командной строки и console 
+:hourglass_flowing_sand: [1.5 Http-module. Переменные окружениянты командной строки и console](https://github.com/KristineGNCH/NDSE/tree/main/HM-1.5)
 
 
 ## Блок 2: Библиотека Express.js
