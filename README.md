@@ -11,9 +11,9 @@
 
 ## Блок 2: Библиотека Express.js
 
-:hourglass_flowing_sand: [2.1 Express](https://github.com/KristineGNCH/NDSE/tree/main/HM-2.1)
+:white_check_mark: [2.1 Express](https://github.com/KristineGNCH/NDSE/tree/main/HM-2.1)
 
-:x: 2.2 Middleware. Паттерн "цепочка обязанностей"
+:hourglass_flowing_sand: 2.2 Middleware. Паттерн "цепочка обязанностей"
 
 :x: 2.3 EJS. Шаблонизаторы
 
