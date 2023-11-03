@@ -16,8 +16,29 @@ class Book {
 }
 
 const library = {
-    books: [],
+    books: [
+        new Book(
+            'Книга 1',
+            'Руслан и Людмила',
+            'Пушкин, Александр Сергеевич',
+        ),
+        new Book(
+            'Книга 2',
+            'Медный всадник',
+            'Пушкин, Александр Сергеевич',
+        ),
+        new Book(
+            'Книга 3',
+            'Пиковая дама',
+            'Пушкин, Александр Сергеевич',
+        ),
+    ],
 };
+
+router.get('/', (req, res) => {
+    const { books } = library;
+    res.json({ books });
+});
 
 router.get('/:id/download', (req, res) => {
     const { books } = library;
@@ -32,19 +53,13 @@ router.get('/:id/download', (req, res) => {
 });
 
 
-router.post('/login', (req, res) => {
-    res.status(201);
-    res.json(user);
-});
-
 router.get('/:id', (req, res) => {
     const { books } = library;
     const { id } = req.params;
-    const idx = books.findIndex(el => el.id === id);
+    const book = books.findIndex(el => el.id === id);
 
-    if (idx !== -1) {
-        res.status(201);
-        res.json(books[idx]);
+    if (book !== -1) {
+        res.json(books[book]);
     } else {
         res.status(404);
         res.json('404 | страница не найдена');
@@ -100,11 +115,6 @@ router.delete('/:id', (req, res) => {
         res.status(404);
         res.json('404 | страница не найдена');
     }
-});
-
-router.get('/', (req, res) => {
-    const { url } = req;
-    res.json({ url });
 });
 
 
