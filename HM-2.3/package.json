@@ -1,7 +1,7 @@
 {
-  "name": "hm-2.5",
+  "name": "hm-2.3",
   "version": "1.0.0",
-  "description": "",
+  "description": "Домашнее задание к занятию «2.3. EJS. Шаблонизаторы»",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
