@@ -1,0 +1,120 @@
+1. Загрузите образ busybox последней версии:
+
+PS C:\Users\Ivan\Desktop\frontend\docker> docker pull busybox
+Using default tag: latest
+latest: Pulling from library/busybox
+Digest: sha256:3fbc632167424a6d997e74f52b878d7cc478225cffac6bc977eedfe51c7f4e79
+Status: Image is up to date for busybox:latest
+docker.io/library/busybox:latest
+
+What's Next?
+  View a summary of image vulnerabilities and recommendations → docker scout quickview busybox
+PS C:\Users\Ivan\Desktop\frontend\docker> docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+2. Запустите новый контейнер busybox с командой ping сайта netology.ru, и количеством пингов 7, поименуйте контейнер pinger:
+
+PS C:\Users\Ivan\Desktop\frontend\docker> docker run --name pinger busybox ping -c 7 netology.ru
+64 bytes from 188.114.99.224: seq=0 ttl=63 time=23.482 ms
+64 bytes from 188.114.99.224: seq=2 ttl=63 time=24.194 ms
+64 bytes from 188.114.99.224: seq=3 ttl=63 time=24.620 ms
+64 bytes from 188.114.99.224: seq=5 ttl=63 time=23.862 ms
+64 bytes from 188.114.99.224: seq=6 ttl=63 time=23.987 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 23.482/24.267/26.217 ms
+
+3. Выведите на список всех контейнеров - запущенных и остановленных:
+
+PS C:\Users\Ivan\Desktop\frontend\docker> docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                      PORTS     NAMES
+1635c7f9f84d   busybox   "ping -c 7 netology.…"   18 seconds ago   Exited (0) 12 seconds ago             pinger
+
+4. Выведите на экран логи контейнера с именем pinger
+
+PS C:\Users\Ivan\Desktop\frontend\docker> docker logs pinger
+PING netology.ru (188.114.99.224): 56 data bytes
+64 bytes from 188.114.99.224: seq=0 ttl=63 time=23.482 ms
+64 bytes from 188.114.99.224: seq=1 ttl=63 time=23.507 ms
+64 bytes from 188.114.99.224: seq=2 ttl=63 time=24.194 ms
+64 bytes from 188.114.99.224: seq=3 ttl=63 time=24.620 ms
+64 bytes from 188.114.99.224: seq=4 ttl=63 time=26.217 ms
+64 bytes from 188.114.99.224: seq=5 ttl=63 time=23.862 ms
+64 bytes from 188.114.99.224: seq=6 ttl=63 time=23.987 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 23.482/24.267/26.217 ms
+
+5. Запустите второй раз контейнера с именем pinger:
+
+PS C:\Users\Ivan\Desktop\frontend\docker> docker start pinger
+pinger
+CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS                     PORTS     NAMES
+1635c7f9f84d   busybox   "ping -c 7 netology.…"   About a minute ago   Exited (0) 6 seconds ago             pinger
+
+7. Выведите на экран логи контейнера с именем pinger:
+
+PS C:\Users\Ivan\Desktop\frontend\docker> docker logs pinger
+PING netology.ru (188.114.99.224): 56 data bytes
+64 bytes from 188.114.99.224: seq=0 ttl=63 time=23.482 ms
+64 bytes from 188.114.99.224: seq=2 ttl=63 time=24.194 ms
+64 bytes from 188.114.99.224: seq=3 ttl=63 time=24.620 ms
+64 bytes from 188.114.99.224: seq=4 ttl=63 time=26.217 ms
+64 bytes from 188.114.99.224: seq=5 ttl=63 time=23.862 ms
+64 bytes from 188.114.99.224: seq=6 ttl=63 time=23.987 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 23.482/24.267/26.217 ms
+PING netology.ru (188.114.98.224): 56 data bytes
+64 bytes from 188.114.98.224: seq=0 ttl=63 time=24.300 ms
+64 bytes from 188.114.98.224: seq=1 ttl=63 time=24.167 ms
+64 bytes from 188.114.98.224: seq=2 ttl=63 time=24.959 ms
+64 bytes from 188.114.98.224: seq=3 ttl=63 time=24.730 ms
+64 bytes from 188.114.98.224: seq=4 ttl=63 time=24.682 ms
+64 bytes from 188.114.98.224: seq=5 ttl=63 time=28.645 ms
+64 bytes from 188.114.98.224: seq=6 ttl=63 time=91.927 ms
+--- netology.ru ping statistics ---
+round-trip min/avg/max = 24.167/34.772/91.927 ms
+
+
+8. Определите по логам общее количество запусков команды ping и какое общее количество отправленых запросов:
+
+PS C:\Users\Ivan\Desktop\frontend\docker> docker logs -t pinger | sls  'netology.ru ping statistics'
+
+2023-11-14T10:18:49.491019986Z --- netology.ru ping statistics ---
+2023-11-14T10:19:37.530503011Z --- netology.ru ping statistics ---
+
+
+PS C:\Users\Ivan\Desktop\frontend\docker> docker logs -t pinger | sls  'seq'
+
+2023-11-14T10:18:43.489551233Z 64 bytes from 188.114.99.224: seq=0 ttl=63 time=23.482 ms
+2023-11-14T10:18:44.489657176Z 64 bytes from 188.114.99.224: seq=1 ttl=63 time=23.507 ms
+2023-11-14T10:18:45.490550685Z 64 bytes from 188.114.99.224: seq=2 ttl=63 time=24.194 ms
+2023-11-14T10:18:46.491208563Z 64 bytes from 188.114.99.224: seq=3 ttl=63 time=24.620 ms
+2023-11-14T10:18:47.492859870Z 64 bytes from 188.114.99.224: seq=4 ttl=63 time=26.217 ms
+2023-11-14T10:18:48.490739223Z 64 bytes from 188.114.99.224: seq=5 ttl=63 time=23.862 ms
+2023-11-14T10:18:49.490987153Z 64 bytes from 188.114.99.224: seq=6 ttl=63 time=23.987 ms
+2023-11-14T10:19:31.462169547Z 64 bytes from 188.114.98.224: seq=0 ttl=63 time=24.300 ms
+2023-11-14T10:19:32.462097650Z 64 bytes from 188.114.98.224: seq=1 ttl=63 time=24.167 ms
+2023-11-14T10:19:33.462982322Z 64 bytes from 188.114.98.224: seq=2 ttl=63 time=24.959 ms
+2023-11-14T10:19:34.462863305Z 64 bytes from 188.114.98.224: seq=3 ttl=63 time=24.730 ms
+2023-11-14T10:19:35.463007643Z 64 bytes from 188.114.98.224: seq=4 ttl=63 time=24.682 ms
+2023-11-14T10:19:36.467085124Z 64 bytes from 188.114.98.224: seq=5 ttl=63 time=28.645 ms
+2023-11-14T10:19:37.530467793Z 64 bytes from 188.114.98.224: seq=6 ttl=63 time=91.927 ms
+
+8. Удалите контейнер с именем pinger:
+
+PS C:\Users\Ivan\Desktop\frontend\docker> docker rm pinger
+pinger
+
+9. Удалите образ busybox:
+
+PS C:\Users\Ivan\Desktop\frontend\docker> docker rmi busybox
+Untagged: busybox:latest
+Untagged: busybox@sha256:3fbc632167424a6d997e74f52b878d7cc478225cffac6bc977eedfe51c7f4e79
+Deleted: sha256:a416a98b71e224a31ee99cff8e16063554498227d2b696152a9c3e0aa65e5824
+Deleted: sha256:3d24ee258efc3bfe4066a1a9fb83febf6dc0b1548dfe896161533668281c9f4f
+PS C:\Users\Ivan\Desktop\frontend\docker> 
