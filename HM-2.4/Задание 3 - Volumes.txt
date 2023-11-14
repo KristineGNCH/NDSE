@@ -1,0 +1,72 @@
+1. Загрузите образ node версии 15.14
+PS C:\Users\Ivan\Desktop\frontend\docker> docker pull node:15.14
+15.14: Pulling from library/node
+Digest: sha256:608bba799613b1ebf754034ae008849ba51e88b23271412427b76d60ae0d0627
+docker.io/library/node:15.14
+
+  View a summary of image vulnerabilities and recommendations → docker scout quickview node:15.14
+
+2. Запустите контейнер с именем first_node из образа node версии 15.14 в фоновом режиме, подключив папку data из текущей директории в /var/first/data контейнера
+
+PS C:\Users\Ivan\Desktop\frontend\docker> docker run --name first_node -it -v C:\Users\Ivan\Desktop\frontend\docker\data\:/var/first/data -d node:15.14
+9a13a8902af65e6a7e8e1ee6c88c734a7ed6c94b9a58655fcbf2db4f0bedee36
+
+3. Запустите контейнер с именем second_node из образа node версии 15.14 в фоновом режиме, подключив папку data из текущей директории в /var/second/data контейнера
+
+PS C:\Users\Ivan\Desktop\frontend\docker> docker run --name second_node -it -v C:\Users\Ivan\Desktop\frontend\docker\data\:/var/second/data -d node:15.14
+2dd260fc4d12a943010f06926fe1053ecd28adcdaa6bdcda0f324571c3eb6bf3
+
+4. Подключитесь к контейнеру first_node с помощью exec и создайте текстовый файл любого содержания в /var/first/data
+
+PS C:\Users\Ivan\Desktop\frontend\docker> docker exec -it first_node /bin/sh
+# cd var/first/data
+# echo > data.txt
+# exit
+
+5. Добавьте еще один файл в папку data на хостовой машине
+
+PS C:\Users\Ivan\Desktop\frontend\docker> docker exec -it first_node /bin/sh
+# cd var/first/data
+# echo > data2.txt
+# exit
+
+6. Подключитесь к контейнеру second_node с помощью exec и получите список файлов в директории /var/second/data, выведете на экран содержимое файлов
+
+PS C:\Users\Ivan\Desktop\frontend\docker> docker exec -it second_node /bin/sh
+# cd var/second/data
+# ls
+data.txt  data2.txt
+# exit
+
+7. Остановите оба контейнера
+
+PS C:\Users\Ivan\Desktop\frontend\docker> docker ps -a
+CONTAINER ID   IMAGE        COMMAND                  CREATED         STATUS         PORTS     NAMES
+2dd260fc4d12   node:15.14   "docker-entrypoint.s…"   5 minutes ago   Up 5 minutes             second_node
+9a13a8902af6   node:15.14   "docker-entrypoint.s…"   6 minutes ago   Up 6 minutes             first_node
+PS C:\Users\Ivan\Desktop\frontend\docker> docker stop 2dd260fc4d12 9a13a8902af6
+2dd260fc4d12
+9a13a8902af6
+
+8. Удалите оба контейнера
+
+PS C:\Users\Ivan\Desktop\frontend\docker> docker rm 2dd260fc4d12 9a13a8902af6
+2dd260fc4d12
+9a13a8902af6
+
+9. Удалите образ node версии 15.14
+
+PS C:\Users\Ivan\Desktop\frontend\docker> docker rmi node:15.14
+Untagged: node:15.14
+Untagged: node@sha256:608bba799613b1ebf754034ae008849ba51e88b23271412427b76d60ae0d0627
+Deleted: sha256:3d3f41722daf1a77c34d6eade6676bbffa2d6a2a21095de2ab0c427a5c942fc9
+Deleted: sha256:601382991a159cfc5013ad973158f30b7b7a913e8d7e547b3456deab3ad98022
+Deleted: sha256:d5db49eecae8c02c9ea3a79f89c43ded9162bac118a0302a7b514d0df82aa112
+Deleted: sha256:a2c1973858d0aad3de0927294602b17c8ef9050c30e0f461e0868997a08552a4
+Deleted: sha256:a0153172017a08a521a8be971ca4dcb5fbc4b7227642c12bbb2da6265bd66b50
+Deleted: sha256:f1123940e954d335d91b52a40fab4f8144f38ff113ade7d65663071d0f06da6f
+Deleted: sha256:f1f4fbb0e7e6e0ce2d9eae1e577f9f6df0a719dd874bff00b2d08895c75c297d
+Deleted: sha256:1eb455ab6d45fdbbd90fccff791ffa228080c052acf464f8da1b1d78650bd706
+Deleted: sha256:1dbe832a694971a925d7d216f49b700c95f402bd72288f9d37eceb1d59dcf72d
+Deleted: sha256:2f4ee6a2e1b5dfb9236cd262e788f9d39109242ca27a4aacb583c8af66ec3ff7
+PS C:\Users\Ivan\Desktop\frontend\docker> 
