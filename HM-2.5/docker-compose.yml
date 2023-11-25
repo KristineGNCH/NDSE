@@ -1,0 +1,23 @@
+services:
+  storage:
+    image: redis
+    volumes:
+      - ./data:/data
+  counter-counter:
+    image: kristinegnch/counter-counter:v1.0.0
+    ports:
+      - 3000:3000
+    environment:
+      - PORT=3000
+      - REDIS_URL=redis://storage
+    depends_on:
+      - storage
+  library:
+    image: kristinegnch/library:v1.0.0
+    ports:
+      - 80:3002
+    environment:
+      - PORT=3002
+      - COUNTER_URL=counter-counter
+    depends_on:
+      - counter-counter
