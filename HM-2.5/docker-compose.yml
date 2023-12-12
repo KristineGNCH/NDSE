@@ -15,9 +15,9 @@ services:
   library:
     image: kristinegnch/library:v1.0.0
     ports:
-      - 80:3002
+      - 3000:30020
     environment:
-      - PORT=3002
+      - PORT=3000
       - COUNTER_URL=counter-counter
     depends_on:
       - counter-counter
