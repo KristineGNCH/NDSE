@@ -21,7 +21,7 @@
 
 [2.5 Docker: контейнеризация приложения](https://github.com/KristineGNCH/NDSE/tree/main/HM-2.5)
 
-2.6 Базы данных и хранение данных
+[2.6 Базы данных и хранение данных](https://github.com/KristineGNCH/NDSE/tree/main/HM-2.6)
 
 2.7 Подключение MongoDB в Node.js-приложение
 
