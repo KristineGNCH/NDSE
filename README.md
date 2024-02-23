@@ -23,7 +23,7 @@
 
 [2.6 Базы данных и хранение данных](https://github.com/KristineGNCH/NDSE/tree/main/HM-2.6)
 
-2.7 Подключение MongoDB в Node.js-приложение
+[2.7 Подключение MongoDB в Node.js-приложение](https://github.com/KristineGNCH/NDSE/tree/main/HM-2.7)
 
 2.8 Аутентификация. Passport.js
 
