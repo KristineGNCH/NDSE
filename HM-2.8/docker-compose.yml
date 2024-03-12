@@ -1,0 +1,47 @@
+services:
+
+  storage:
+    image: redis
+    volumes:
+      - ./data:/data
+
+  counter-counter:
+    image: kristinegnch/counter-counter:v1.0.0
+    ports:
+      - 3000:3000
+    environment:
+      - PORT=3000
+      - REDIS_URL=redis://storage
+    depends_on:
+      - storage
+
+  library:
+    image: kristinegnch/library:v1.0.0
+    ports:
+      - 3000:30020
+    environment:
+      - PORT=3000
+      - COUNTER_URL=counter-counter
+    depends_on:
+      - counter-counter
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./data/mongo:/data/db
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+    depends_on:
+      - mongo
