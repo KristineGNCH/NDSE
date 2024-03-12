@@ -25,7 +25,7 @@
 
 [2.7 Подключение MongoDB в Node.js-приложение](https://github.com/KristineGNCH/NDSE/tree/main/HM-2.7)
 
-2.8 Аутентификация. Passport.js
+[2.8 Аутентификация. Passport.js](https://github.com/KristineGNCH/NDSE/tree/main/HM-2.8)
 
 2.9 Realtime-взаимодействие с сервером, протокол websocket
 
